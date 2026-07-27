@@ -40,9 +40,9 @@
       </p>
         <img style=width:150px;height:80px src="Adobe Express - file.png">
     <script>
-    setInterval(function () {
-        document.querySelector("#TimeElement").innerHTML = new Date().toLocaleString();
-        }, 1000);
+    var currentTime = new Date().toLocaleString();
+            var timeText = document.querySelector("#timeElement");
+                    timeText.innerHTML = currentTime;
 </script>
         <p id="TimeElement">
           Time
