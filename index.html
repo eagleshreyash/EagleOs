@@ -40,9 +40,11 @@
       </p>
         <img style=width:150px;height:80px src="Adobe Express - file.png">
     <script>
+      function updateTime() {
     var currentTime = new Date().toLocaleString();
             var timeText = document.querySelector("#TimeElement");
                     timeText.innerHTML = currentTime;
+      }
 </script>
         <p id="TimeElement">
           Time
