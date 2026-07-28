@@ -1,33 +1,41 @@
-dragElement(document.getElementById("window"));
-function dragElement(element) {
-      var initialX = 0;
-  var initialY = 0;
-  var currentX = 0;
-  var currentY = 0;
-    if (document.getElementById(element.id + "header")) {
-            document.getElementById(element.id + "header").onmousedown = startDragging;
+dragElement(document.getElementById("welcome"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
   } else {
-     element.onmousedown = startDragging;
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
   }
-   function startDragging(e) {
+
+  function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
- initialX = e.clientX;
- initialY = e.clientY;
- document.onmouseup = stopDragging;
-    document.onmousemove = dragElement;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
   }
-  function dragElement(e) {
+
+  function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
-       currentX = initialX - e.clientX;
-    currentY = initialY - e.clientY;
-    initialX = e.clientX;
-    initialY = e.clientY;
-        element.style.top = (element.offsetTop - currentY) + "px";
-    element.style.left = (element.offsetLeft - currentX) + "px";
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
   }
-    function stopDragging() {
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
   }
