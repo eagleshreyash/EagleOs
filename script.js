@@ -1,4 +1,4 @@
-dragElement(document.getElementById("welcome"));
+dragElement(document.getElementById("window"));
 function dragElement(element) {
       var initialX = 0;
   var initialY = 0;
