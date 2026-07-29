@@ -40,16 +40,16 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-var welcomeScreen = document.querySelector("mydiv")
+var welcomeScreen = document.querySelector("#mydiv")
 function closeWindow(element) {
   element.style.display = "none"
 }
 function openWindow(element) {
   element.style.display = "flex"
 }
-var welcomeScreenClose = document.querySelector("mydivclose")
+var welcomeScreenClose = document.querySelector("#mydivclose")
 
-var welcomeScreenOpen = document.querySelector("mydivopen")
+var welcomeScreenOpen = document.querySelector("#mydivopen")
 welcomeScreenClose.addEventListener("click", function() {
   closeWindow(welcomeScreen);
 });
