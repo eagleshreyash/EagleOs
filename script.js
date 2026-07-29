@@ -40,9 +40,20 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-var welcomeScreenClose = document.querySelector("#welcomeclose")
+dragElement(document.getElementById("mydiv"));
 
-var welcomeScreenOpen = document.querySelector("#welcomeopen")
+var welcomeScreen = document.querySelector("#mydiv");
+var welcomeScreenClose = document.querySelector("#welcomeclose");
+var welcomeScreenOpen = document.querySelector("#welcomeopen");
+
+function closeWindow(windowElement) {
+  windowElement.style.display = "none";
+}
+
+function openWindow(windowElement) {
+  windowElement.style.display = "";
+}
+
 welcomeScreenClose.addEventListener("click", function() {
   closeWindow(welcomeScreen);
 });
