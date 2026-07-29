@@ -14,6 +14,10 @@
         font-size: 24px;
       }
     </style>
+    <head>
+  <script type="module" src="./script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
     <title  style="color: red;">EagleOs</title>
 </head>
 
@@ -21,9 +25,10 @@
     <div id="mydiv"
     style="border:thick double;width: 720px;color:red;border-radius:64px;padding:16px;
     position: absolute; top: 65%; left: 50%;transform: translate(-50%, -50%);background-color:#1C1C1C;">
-  <div id="mydivheader"><img src="moveicon1.png"style="width:64px;height:64px;border-radius:64px;object-fit:
-   cover;border: 3px solid red;float:right;"></div>
-   <img src="Close icon.png" style="cursor: pointer;width:50px;height:30px" id="welcomeclose">
+  <div class="closebutton"
+  id="mydivheader"><img src="moveicon1.png"style="width:64px;height:64px;border-radius:64px;object-fit:
+   cover;border: 3px solid red;float:right;">
+   <img src="Close icon.png" style="cursor: pointer;width:50px;height:30px" id="welcomeclose"></div>
   <h1 style="color: red;">Eagle here</h1>
   <img style="width:230px; height: 230px;border-radius:240px;object-fit: cover" src="me1.webp" />
   <h3 style="color:red">About</h3>
