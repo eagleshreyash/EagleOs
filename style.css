@@ -1,11 +1,20 @@
-.closebutton {
-   width:64px;
-   height:64px;
-   border-radius:64px;
-   object-fit: cover;
-   border: 3px solid red;
-   float:right;
-   cursor: pointer;
-   width:50px;
-   height:30px
-}
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+               }
+
+.move-icon {
+     width: 64px;
+     height: 64px;
+     border-radius: 64px;
+     object-fit: cover;
+     border: 3px solid red;
+     cursor: move;
+           }
+
+  .close-button {
+     width: 50px;
+     height: 30px;
+     cursor: pointer;
+                }
