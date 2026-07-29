@@ -47,3 +47,13 @@ function closeWindow(element) {
 function openWindow(element) {
   element.style.display = "flex"
 }
+var welcomeScreenClose = document.querySelector("mydivclose")
+
+var welcomeScreenOpen = document.querySelector("mydivopen")
+welcomeScreenClose.addEventListener("click", function() {
+  closeWindow(welcomeScreen);
+});
+
+welcomeScreenOpen.addEventListener("click", function() {
+  openWindow(welcomeScreen);
+});
