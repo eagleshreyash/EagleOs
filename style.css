@@ -2,9 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(255,0,0,0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 0, 0, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     width: 100%;
   padding: 12px 16px;
   box-sizing: border-box; 
@@ -34,8 +34,9 @@
      position: absolute;
      top: 65%;
      left: 50%;
-     transform: translate(-50%, -50%);
-     background-color:rgba(28, 28, 28, 0.85);
+     transform: translate();
+     background-color: rgba(28, 28, 28, 0.45);
+     backdrop-filter: blur(15px);
    }
    .window > *:not(.window-header) {
   margin-left: 16px;
