@@ -62,3 +62,21 @@ welcomeScreenOpen.addEventListener("click", function() {
   openWindow(welcomeScreen);
 });
 
+var selectedIcon = undefined
+function selectedIcon(element){
+element.classlist.add("selected");
+selectedIcon = element
+function deselectIcon(element) {
+  element.classList.remove("selected");
+  selectedIcon = undefined
+  function handleIconTap(element) {
+  if (element.classList.contains("selected")) {
+    deselectIcon(element)
+    openWindow(window)
+  } else {
+    selectIcon(element)
+  }
+}
+}
+}
+
