@@ -62,24 +62,4 @@ welcomeScreenOpen.addEventListener("click", function() {
   openWindow(welcomeScreen);
 });
 
-let selectedIconElement = undefined;
-
-function selectIcon(element) {
-  element.classList.add("selected");
-  selectedIconElement = element;
-}
-
-function deselectIcon(element) {
-  element.classList.remove("selected");
-  selectedIconElement = undefined;
-}
-
-function handleIconTap(element) {
-  if (element.classList.contains("selected")) {
-    deselectIcon(element);
-    openWindow(element); 
-  } else {
-    selectIcon(element);
-  }
-}
 
