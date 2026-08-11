@@ -1,84 +1,78 @@
 
-<!DOCTYPE html>
+
 <html>
 
 <head>
- <meta charset="utf-8">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap">
     <style>
       body {
         font-family: "Special Elite", system-ui;
         font-weight: 400;
         font-style: normal;
         font-size: 24px;
-        color:red;
+        color: red;
       }
     </style>
-
-  <script type="module" src="./script.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-
-    <title  style="color: red;">EagleOs</title>
+    <script type="module" src="./script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title style="color: red;">EagleOs</title>
 </head>
 
-  <body style="background-color:#1C1C1C;background-image:url(wallpaper.png);background-size:cover;height: 100vh">
+<body style="background-color:#1C1C1C; background-image:url(wallpaper.png); background-size:cover; height: 100vh; margin: 0;">
 
+    <!-- --- WINDOW 1: WELCOME SCREEN --- -->
     <div id="mydiv" class="window">
-  <div id="mydivheader" class="window-header">
-  <img src="moveicon1.png" class="move-icon">
-  <img src="Close icon.png"
-     id="welcomeclose"
-     class="close-button">
-    </div>
-
-  <h1 style="color: red;">Eagle here</h1>
-  <img style="width:230px; height: 230px;border-radius:240px;object-fit: cover" src="me1.webp" />
-  <h3 style="color:red">About</h3>
-  <p style="color: red;">
-    Hey fellas!! this is <strong>Shreyash Singh</strong> and welcome to the <strong>Eagle Os</strong>.
-    The OS made by the one and only serious himself. enjoyyyyy:) </p>
-  <a href="https://www.instagram.com/eagleshreyash?igsh=MTN3YWUxbzIycjg5ag==" style="color: #e1306c">@EagleShreyash</a>
-  <p style="color:red">(Note:Eagle is my online allias so don't be confused:)</p>
-    </div>
-
-    <div
-    style="display: flex;color:red;justify-content: space-evenly;position:absolute;width:100%;
-    backdrop-filter:blur(10px);background-color:rgb(254, 254, 254,0.125);">
-
-      <p>
-        EagleOs
-      </p>
-        <img style="width:150px;height:80px; cursor: pointer" src="Adobe Express - file.png" id="welcomeopen">
-    <script>
-    setInterval(function () {
-  document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
- }, 1000);
-</script>
-        <p id="timeElement">
-          Time
+        <div id="mydivheader" class="window-header">
+            <img src="moveicon1.png" class="move-icon">
+            <img src="Close icon.png" id="welcomeclose" class="close-button">
+        </div>
+        <h1 style="color: red;">Eagle here</h1>
+        <img style="width:230px; height: 230px; border-radius:240px; object-fit: cover" src="me1.webp" />
+        <h3 style="color:red">About</h3>
+        <p style="color: red;">
+            Hey fellas!! this is <strong>Shreyash Singh</strong> and welcome to the <strong>Eagle Os</strong>.
+            The OS made by the one and only serious himself. enjoyyyyy:)
         </p>
-</div>
-  <script src="script.js"></script>
-   <div id="desktopApps" style="padding-top: 100px; padding-left: 16px; position: relative; z-index: 5;"></div>
-    <div onclick="handleIconTap(this)" style="text-align: center; padding: 12px; width: fit-content; cursor: pointer; filter: drop-shadow(0 0 8px black); display: inline-block;">
-         <img src="app-logo.png" style="width: 150px; height: 150px; display: block; margin: 0 auto 8px auto;">
-         <p style="margin: 0px; color: red">Hawk Notes</p>
-         
-<div id="hawkNotesWindow" class="window" style="display: none;">
-    <div id="hawkNotesHeader" class="window-header">
-        <img src="moveicon1.png" class="move-icon">
-        <img src="Close icon.png" id="hawkNotesClose" class="close-button">
+        <a href="https://www.instagram.com/eagleshreyash?igsh=MTN3YWUxbzIycjg5ag==" style="color: #e1306c">@EagleShreyash</a>
+        <p style="color:red">(Note: Eagle is my online allias so don't be confused:)</p>
     </div>
 
-    <h1 style="color: red; margin-top: 16px;">Hawk Notes</h1>
-    <textarea style="width: 90%; height: 200px; background-color: #2c2c2c; color: #fff; border: 2px solid red; font-family: inherit; font-size: 18px; padding: 8px; border-radius: 8px; margin-bottom: 16px;" placeholder="Notesforthe Eagles"></textarea>
-</div>
+    <!-- --- WINDOW 2: HAWK NOTES WINDOW (Separated out completely from desktop icon wrapper) --- -->
+    <div id="hawkNotesWindow" class="window" style="display: none;">
+        <div id="hawkNotesHeader" class="window-header">
+            <img src="moveicon1.png" class="move-icon">
+            <img src="Close icon.png" id="hawkNotesClose" class="close-button">
+        </div>
+        <h1 style="color: red; margin-top: 16px;">Hawk Notes</h1>
+        <textarea style="width: 90%; height: 200px; background-color: #2c2c2c; color: #fff; border: 2px solid red; font-family: inherit; font-size: 18px; padding: 8px; border-radius: 8px; margin-bottom: 16px;" placeholder="Notes for the Eagles"></textarea>
+    </div>
 
-     </div>
+    <!-- --- TOP NAVIGATION INTERFACE BAR --- -->
+    <div style="display: flex; color:red; justify-content: space-evenly; position:absolute; top: 0; left: 0; width:100%; backdrop-filter:blur(10px); background-color:rgb(254, 254, 254, 0.125); z-index: 100;">
+        <p>EagleOs</p>
+        <img style="width:150px; height:80px; cursor: pointer" src="Adobe Express - file.png" id="welcomeopen">
+        <p id="timeElement">Time</p>
+    </div>
 
-  </div>
-  </body>
+    <script>
+        setInterval(function () {
+            document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
+        }, 1000);
+    </script>
 
+    <!-- Runtime Logic Connector -->
+    <script src="script.js"></script>
+
+    <!-- --- SYSTEM DESKTOP APP SHORTCUT CONTAINER --- -->
+    <div id="desktopApps" style="padding-top: 120px; padding-left: 16px; position: relative; z-index: 5;">
+        <!-- Hawk Notes Desktop Shortcut -->
+        <div onclick="handleIconTap(this)" style="text-align: center; padding: 12px; width: fit-content; cursor: pointer; filter: drop-shadow(0 0 8px black); display: inline-block;">
+            <img src="app-logo.png" style="width: 150px; height: 150px; display: block; margin: 0 auto 8px auto;">
+            <p style="margin: 0px; color: red;">Hawk Notes</p>
+        </div>
+    </div>
+
+</body>
 </html>
 
