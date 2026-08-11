@@ -1,3 +1,15 @@
+
+@import url('https://googleapis.com');
+
+
+body {
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    color: red;
+}
+
 .window-header {
     display: flex;
     justify-content: space-between;
@@ -6,9 +18,9 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     width: 100%;
-  padding: 12px 16px;
-  box-sizing: border-box; 
-               }
+    padding: 12px 16px;
+    box-sizing: border-box; 
+}
 
 .move-icon {
      width: 45px;
@@ -17,19 +29,20 @@
      object-fit: cover;
      border: 2px solid red;
      cursor: move;
-           }
+}
 
-  .close-button {
+.close-button {
      width: 45px;
      height: 45px;
      object-fit: contain;
      cursor: pointer;
-                }
-  .window {
-     border:thick double;
+}
+
+.window {
+     border: thick double;
      width: 720px;
-     color:red;
-     border-radius:64px;
+     color: red;
+     border-radius: 64px;
      overflow: hidden;
      position: absolute;
      top: 65%;
@@ -37,14 +50,15 @@
      transform: translate(-50%, -50%);
      background-color: rgba(28, 28, 28, 0.45);
      backdrop-filter: blur(15px);
-   }
-   .window > *:not(.window-header) {
-  margin-left: 16px;
-  margin-right: 16px;
-                  }  
+}
 
-  .selected {
-    background-color: rgba(255, 255, 255, 0.3); /* Subtle glass highlight */
+.window > *:not(.window-header) {
+    margin-left: 16px;
+    margin-right: 16px;
+}  
+
+.selected {
+    background-color: rgba(255, 255, 255, 0.3); 
     border-radius: 12px;
     outline: 2px solid #fff;
-   }
+}
