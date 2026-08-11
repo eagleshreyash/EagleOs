@@ -18,7 +18,7 @@ function closeWindow(windowElement) {
 function openWindow(windowElement) {
   if (windowElement) {
     windowElement.style.display = "";
-    
+
     topZIndex++;
     windowElement.style.zIndex = topZIndex;
   }
@@ -49,7 +49,7 @@ if (hawkNotesClose) {
   });
 }
 
-// --- 5. App Icon Interaction ---
+
 window.handleIconTap = function(element) {
     if (element.classList.contains("selected")) {
         deselectIcon(element);
@@ -57,7 +57,8 @@ window.handleIconTap = function(element) {
     } else {
         deselectIcon(selectedIcon);
         selectIcon(element);
-  
+        
+      
         openWindow(hawkNotesWindow); 
     }
 }
