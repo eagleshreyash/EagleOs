@@ -82,3 +82,28 @@ function handleIconTap(element) {
       selectIcon(element);
     }
 }
+
+var hawkNotesWindow = document.querySelector("#hawkNotesWindow");
+var hawkNotesClose = document.querySelector("#hawkNotesClose");
+
+
+dragElement(document.getElementById("hawkNotesWindow"));
+
+
+hawkNotesClose.addEventListener("click", function() {
+    closeWindow(hawkNotesWindow);
+});
+
+
+function handleIconTap(element) {
+    if (element.classList.contains("selected")) {
+        deselectIcon(element);
+        selectedIcon = undefined;
+    } else {
+        deselectIcon(selectedIcon);
+        selectIcon(element);
+        
+      
+        openWindow(hawkNotesWindow); 
+    }
+}
