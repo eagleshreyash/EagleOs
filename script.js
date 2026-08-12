@@ -19,7 +19,7 @@ function openWindow(windowElement) {
   if (windowElement) {
 
     windowElement.style.display = "";
-    
+
     topZIndex++;
     windowElement.style.zIndex = topZIndex;
     
@@ -111,38 +111,43 @@ function dragElement(elmnt) {
 
   function dragMouseDown(e) {
     e = e || window.event;
+  
     
-    // Do not drag if clicking close button, textarea, or inputs
-
     if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT' || e.target.classList.contains('close-button')) {
-
-        return; 
+       
+      return; 
     }
     
     e.preventDefault();
     focusWindow(elmnt);
-    
-    // Ensure coordinates are fixed to pixels upon interaction click
-    fixWindowCoords(elmnt);
    
+    // Force explicit pixel initialization on the very first click if missing
+    if (!elmnt.style.top || elmnt.style.top === "") {
+        elmnt.style.top = elmnt.offsetTop + "px";
+        elmnt.style.left = elmnt.offsetLeft + "px";
+    }
+
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
   }
 
-  function elementDrag(e) {
+    function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
     
+    // Calculate new cursor position changes
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
     
+    // Set element's new position directly using calculated style subtraction
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
   }
+
 
   function closeDragElement() {
 
