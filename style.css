@@ -46,13 +46,14 @@ body {
      overflow: hidden;
      position: absolute;
      
-     top: 50%;
-     left: 50%;
-     margin-top: -300px;  
-     margin-left: -360px; 
+     /* Clean positioning that won't conflict with JS dragging algebra */
+     top: 150px;
+     left: calc(50% - 360px); /* Centers the 720px wide window perfectly */
+     
      background-color: rgba(28, 28, 28, 0.45);
      backdrop-filter: blur(15px);
 }
+
 
 .window > *:not(.window-header) {
     margin-left: 16px;

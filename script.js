@@ -3,7 +3,7 @@ var selectedIcon = undefined;
 var topZIndex = 10; 
 
 // --- 2. Window Elements ---
-var welcomeScreen = document.querySelector("#welcomeScreen");
+var welcomeScreen = document.querySelector("#mydiv");
 var welcomeScreenClose = document.querySelector("#welcomeclose");
 var welcomeScreenOpen = document.querySelector("#welcomeopen"); 
 
@@ -78,29 +78,34 @@ function deselectIcon(element) {
 function dragElement(elmnt) {
   if (!elmnt) return;
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
   
-  // Find the exact header element matching your unique id syntax rules
   var headerElement = document.getElementById(elmnt.id + "header");
-  
+
   if (headerElement) {
-    // If a header exists, apply the mouse trigger ONLY to the header element
+
     headerElement.onmousedown = dragMouseDown;
   } else {
-    // Fallback security rule
+    
     elmnt.onmousedown = dragMouseDown;
   }
 
   function dragMouseDown(e) {
     e = e || window.event;
     
-    // Allow users to naturally select text inside textareas or input fields
-    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') {
-        return; 
+    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT' || e.target.classList.contains('close-button')) {
+        return; // Don't drag if clicking text fields or the close button
     }
     
     e.preventDefault();
 
     focusWindow(elmnt);
+
+    // CRITICAL FIX: Convert percentage/transform positioning into explicit pixels before dragging
+    var rect = elmnt.getBoundingClientRect();
+    elmnt.style.transform = "none"; 
+    elmnt.style.top = rect.top + "px";
+    elmnt.style.left = rect.left + "px";
    
     pos3 = e.clientX;
     pos4 = e.clientY;
@@ -120,6 +125,7 @@ function dragElement(elmnt) {
     
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
   }
 
 
