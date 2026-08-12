@@ -17,10 +17,14 @@ function closeWindow(windowElement) {
 
 function openWindow(windowElement) {
   if (windowElement) {
-    windowElement.style.display = "";
 
+    windowElement.style.display = "";
+    
     topZIndex++;
     windowElement.style.zIndex = topZIndex;
+    
+    // Fix layout metrics the moment it becomes visible
+    fixWindowCoords(windowElement);
   }
 }
 
@@ -28,6 +32,23 @@ function openWindow(windowElement) {
 function focusWindow(windowElement) {
   topZIndex++;
   windowElement.style.zIndex = topZIndex;
+}
+
+// Helper to convert CSS transforms/percentages into absolute pixels safely
+function fixWindowCoords(elmnt) {
+  if (!elmnt) return;
+  // Temporarily show element if it was hidden so getBoundingClientRect works
+  var originalDisplay = elmnt.style.display;
+  if (originalDisplay === "none") {
+    elmnt.style.display = "block";
+  }
+  var rect = elmnt.getBoundingClientRect();
+  elmnt.style.transform = "none";
+  elmnt.style.top = rect.top + "px";
+  elmnt.style.left = rect.left + "px";
+  if (originalDisplay === "none") {
+    elmnt.style.display = "none";
+  }
 }
 
 // --- 4. Event Listeners ---
@@ -47,6 +68,7 @@ if (hawkNotesClose) {
   hawkNotesClose.addEventListener("click", function() {
     closeWindow(hawkNotesWindow);
   });
+
 }
 
 
@@ -57,8 +79,7 @@ window.handleIconTap = function(element) {
     } else {
         deselectIcon(selectedIcon);
         selectIcon(element);
-        
-      
+
         openWindow(hawkNotesWindow); 
     }
 }
@@ -74,63 +95,35 @@ function deselectIcon(element) {
   }
 }
 
-// --- 6. Fixed Draggable Window Mechanism ---
+// --- 6. Draggable Window Mechanism ---
 function dragElement(elmnt) {
   if (!elmnt) return;
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
   
-  var headerElement = document.getElementById(elmnt.id + "header");
-
+  // Explicitly query header using correct id format
+  var headerElement = document.getElementById(elmnt.id + "header") || elmnt.querySelector(".window-header");
+  
   if (headerElement) {
-
     headerElement.onmousedown = dragMouseDown;
   } else {
-
     elmnt.onmousedown = dragMouseDown;
   }
 
   function dragMouseDown(e) {
     e = e || window.event;
     
+    // Do not drag if clicking close button, textarea, or inputs
+
     if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT' || e.target.classList.contains('close-button')) {
-        return; // Don't drag if clicking text fields or the close button
-    }
-    
-    e.preventDefault();
 
-    focusWindow(elmnt);
-
-    // CRITICAL FIX: Convert percentage/transform positioning into explicit pixels before dragging
-    var rect = elmnt.getBoundingClientRect();
-    elmnt.style.transform = "none"; 
-    elmnt.style.top = rect.top + "px";
-    elmnt.style.left = rect.left + "px";
-   
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-
-    document.onmousemove = elementDrag;
-  }
-
-    function dragMouseDown(e) {
-    e = e || window.event;
-    
-   
-    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT' || e.target.classList.contains('close-button') || e.target.id === 'welcomeclose' || e.target.id === 'hawkNotesClose') {
         return; 
     }
     
     e.preventDefault();
     focusWindow(elmnt);
-   
-    if (!elmnt.style.top || elmnt.style.top.includes('%') || elmnt.style.transform !== 'none') {
-        var rect = elmnt.getBoundingClientRect();
-        elmnt.style.transform = "none";
-        elmnt.style.top = rect.top + "px";
-        elmnt.style.left = rect.left + "px";
-    }
+    
+    // Ensure coordinates are fixed to pixels upon interaction click
+    fixWindowCoords(elmnt);
    
     pos3 = e.clientX;
     pos4 = e.clientY;
@@ -138,7 +131,18 @@ function dragElement(elmnt) {
     document.onmousemove = elementDrag;
   }
 
-
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
 
   function closeDragElement() {
 
@@ -147,20 +151,6 @@ function dragElement(elmnt) {
   }
 }
 
-// --- 7. Fix Initialization On Load ---
-window.addEventListener("load", function() {
-    
-    if (welcomeScreen) dragElement(welcomeScreen);
-    if (hawkNotesWindow) dragElement(hawkNotesWindow);
-    
-    
-    [welcomeScreen, hawkNotesWindow].forEach(function(elmnt) {
-        if (elmnt && elmnt.style.display !== "none") {
-            var rect = elmnt.getBoundingClientRect();
-            elmnt.style.transform = "none";
-            elmnt.style.top = rect.top + "px";
-            elmnt.style.left = rect.left + "px";
-        }
-    });
-});
-
+// Initialize dragging mechanics safely on page load
+if (welcomeScreen) dragElement(welcomeScreen);
+if (hawkNotesWindow) dragElement(hawkNotesWindow);
