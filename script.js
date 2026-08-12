@@ -86,7 +86,7 @@ function dragElement(elmnt) {
 
     headerElement.onmousedown = dragMouseDown;
   } else {
-    
+
     elmnt.onmousedown = dragMouseDown;
   }
 
@@ -136,6 +136,20 @@ function dragElement(elmnt) {
   }
 }
 
-// Initialize dragging mechanics safely
-if (welcomeScreen) dragElement(welcomeScreen);
-if (hawkNotesWindow) dragElement(hawkNotesWindow);
+// --- 7. Fix Initialization On Load ---
+window.addEventListener("load", function() {
+    // 1. Initialize dragging engine
+    if (welcomeScreen) dragElement(welcomeScreen);
+    if (hawkNotesWindow) dragElement(hawkNotesWindow);
+    
+    // 2. Clear out layout bug by converting positions to raw pixels immediately
+    [welcomeScreen, hawkNotesWindow].forEach(function(elmnt) {
+        if (elmnt && elmnt.style.display !== "none") {
+            var rect = elmnt.getBoundingClientRect();
+            elmnt.style.transform = "none";
+            elmnt.style.top = rect.top + "px";
+            elmnt.style.left = rect.left + "px";
+        }
+    });
+});
+
