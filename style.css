@@ -45,9 +45,11 @@ body {
      border-radius: 64px;
      overflow: hidden;
      position: absolute;
-     top: 65%;
+     
+     top: 50%;
      left: 50%;
-     transform: translate(-50%, -50%);
+     margin-top: -300px;  
+     margin-left: -360px; 
      background-color: rgba(28, 28, 28, 0.45);
      backdrop-filter: blur(15px);
 }

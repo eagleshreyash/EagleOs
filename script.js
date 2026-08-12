@@ -3,7 +3,7 @@ var selectedIcon = undefined;
 var topZIndex = 10; 
 
 // --- 2. Window Elements ---
-var welcomeScreen = document.querySelector("#mydiv");
+var welcomeScreen = document.querySelector("#welcomeScreen");
 var welcomeScreenClose = document.querySelector("#welcomeclose");
 var welcomeScreenOpen = document.querySelector("#welcomeopen"); 
 
