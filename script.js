@@ -114,19 +114,30 @@ function dragElement(elmnt) {
     document.onmousemove = elementDrag;
   }
 
-  function elementDrag(e) {
+    function dragMouseDown(e) {
     e = e || window.event;
-    e.preventDefault();
     
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
+   
+    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT' || e.target.classList.contains('close-button') || e.target.id === 'welcomeclose' || e.target.id === 'hawkNotesClose') {
+        return; 
+    }
+    
+    e.preventDefault();
+    focusWindow(elmnt);
+   
+    if (!elmnt.style.top || elmnt.style.top.includes('%') || elmnt.style.transform !== 'none') {
+        var rect = elmnt.getBoundingClientRect();
+        elmnt.style.transform = "none";
+        elmnt.style.top = rect.top + "px";
+        elmnt.style.left = rect.left + "px";
+    }
+   
     pos3 = e.clientX;
     pos4 = e.clientY;
-    
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
   }
+
 
 
   function closeDragElement() {
@@ -138,11 +149,11 @@ function dragElement(elmnt) {
 
 // --- 7. Fix Initialization On Load ---
 window.addEventListener("load", function() {
-    // 1. Initialize dragging engine
+    
     if (welcomeScreen) dragElement(welcomeScreen);
     if (hawkNotesWindow) dragElement(hawkNotesWindow);
     
-    // 2. Clear out layout bug by converting positions to raw pixels immediately
+    
     [welcomeScreen, hawkNotesWindow].forEach(function(elmnt) {
         if (elmnt && elmnt.style.display !== "none") {
             var rect = elmnt.getBoundingClientRect();
