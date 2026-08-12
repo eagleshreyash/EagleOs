@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <!-- Paste your correct Google Font links right here -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 
 <body style="background-color:#1C1C1C; background-image:url(wallpaper.png); background-size:cover; height: 100vh; margin: 0;">
 
-    <!-- --- WINDOW 1: WELCOME SCREEN --- -->
+    
     <div id="mydiv" class="window">
         <div id="mydivheader" class="window-header">
             <img src="moveicon1.png" class="move-icon">
@@ -34,17 +34,17 @@
         <p style="color:red">(Note: Eagle is my online allias so don't be confused:)</p>
     </div>
 
-    <!-- --- WINDOW 2: HAWK NOTES WINDOW (Separated out completely from desktop icon wrapper) --- -->
+    
     <div id="hawkNotesWindow" class="window" style="display: none;">
         <div id="hawkNotesWindowheader" class="window-header">
             <img src="moveicon1.png" class="move-icon">
             <img src="Close icon.png" id="hawkNotesClose" class="close-button">
         </div>
-        <h1 style="color: red; margin-top: 16px;">Hawk Notes</h1>
+        <h1 style="color: red; margin-top: 16px;">Hawk Notes</h1> <img src="app-logo.png">
         <textarea style="width: 90%; height: 200px; background-color: #2c2c2c; color: #fff; border: 2px solid red; font-family: inherit; font-size: 18px; padding: 8px; border-radius: 8px; margin-bottom: 16px;" placeholder="Notes for the Eagles"></textarea>
     </div>
 
-    <!-- --- TOP NAVIGATION INTERFACE BAR --- -->
+    
     <div style="display: flex; color:red; justify-content: space-evenly; position:absolute; top: 0; left: 0; width:100%; backdrop-filter:blur(10px); background-color:rgb(254, 254, 254, 0.125); z-index: 100;">
         <p>EagleOs</p>
         <img style="width:150px; height:80px; cursor: pointer" src="Adobe Express - file.png" id="welcomeopen">
@@ -57,12 +57,12 @@
         }, 1000);
     </script>
 
-    <!-- Runtime Logic Connector -->
+   
     <script src="script.js"></script>
 
-    <!-- --- SYSTEM DESKTOP APP SHORTCUT CONTAINER --- -->
+
     <div id="desktopApps" style="padding-top: 120px; padding-left: 16px; position: relative; z-index: 5;">
-        <!-- Hawk Notes Desktop Shortcut -->
+      
         <div onclick="handleIconTap(this)" style="text-align: center; padding: 12px; width: fit-content; cursor: pointer; filter: drop-shadow(0 0 8px black); display: inline-block;">
             <img src="app-logo.png" style="width: 150px; height: 150px; display: block; margin: 0 auto 8px auto;">
             <p style="margin: 0px; color: red;">Hawk Notes</p>
