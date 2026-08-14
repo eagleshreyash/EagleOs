@@ -100,7 +100,6 @@ function dragElement(elmnt) {
   if (!elmnt) return;
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   
-  // Explicitly query header using correct id format
   var headerElement = document.getElementById(elmnt.id + "header") || elmnt.querySelector(".window-header");
   
   if (headerElement) {
