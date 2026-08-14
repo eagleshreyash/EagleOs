@@ -45,13 +45,14 @@ body {
      border-radius: 64px;
      overflow: hidden;
      position: absolute;
-     
-     /* Fixed top/left baseline values to replace percentage/transform conflicts */
-     top: 120px;
-     left: calc(50% - 360px);
-     
+
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+
      background-color: rgba(28, 28, 28, 0.45);
      backdrop-filter: blur(15px);
+     z-index: 101;
 }
 
 
