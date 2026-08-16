@@ -9,6 +9,8 @@ var welcomeScreenOpen = document.querySelector("#welcomeopen");
 
 var hawkNotesWindow = document.querySelector("#hawkNotesWindow");
 var hawkNotesClose = document.querySelector("#hawkNotesClose");
+var AdlerTimerWindow = document.querySelector("#AdlerTimerWindow");
+var AdlerTimerClose = document.querySelector("#AdlerTimerClose");
 
 // --- 3. Core Window Logic ---
 function closeWindow(windowElement) {
@@ -54,7 +56,13 @@ if (hawkNotesClose) {
     e.stopPropagation(); // Stops the drag engine from overriding the click
     closeWindow(hawkNotesWindow);
   });
+}
 
+if (AdlerTimerClose) {
+  AdlerTimerClose.addEventListener("click", function(e) {
+    e.stopPropagation(); // Stops the drag engine from overriding the click
+    closeWindow(AdlerTimerWindow);
+  });
 }
 
 
@@ -68,6 +76,18 @@ window.handleIconTap = function(element) {
         selectIcon(element);
 
         openWindow(hawkNotesWindow); 
+    }
+}
+window.handleAdlerIconTap = function(element) {
+    if (element.classList.contains("selected")) {
+        deselectIcon(element);
+        selectedIcon = undefined;
+    } else {
+        deselectIcon(selectedIcon);
+
+        selectIcon(element);
+
+        openWindow(AdlerTimerWindow); 
     }
 }
 
@@ -144,3 +164,4 @@ function dragElement(elmnt) {
 // Initialize dragging mechanics safely on page load
 if (welcomeScreen) dragElement(welcomeScreen);
 if (hawkNotesWindow) dragElement(hawkNotesWindow);
+if (AdlerTimerWindow) dragElement(AdlerTimerWindow);
