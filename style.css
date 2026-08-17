@@ -67,3 +67,57 @@ body {
     border-radius: 12px;
     outline: 2px solid #fff;
 }
+
+
+.main {
+    background-color: rgba(28, 28, 28, 0.45);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: transform 0.2s;
+    width: 650px;
+    
+    
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.timer-circle {
+    box-sizing: border-box; 
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px; 
+    color: crimson;
+    border: 8px solid red; 
+    background-color: transparent;  
+}
+
+
+.control-buttons {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.control-buttons button {
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.control-buttons button:hover {
+    background-color: red;
+    transition: background-color 0.3s;
+}

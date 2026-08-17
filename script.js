@@ -165,3 +165,97 @@ function dragElement(elmnt) {
 if (welcomeScreen) dragElement(welcomeScreen);
 if (hawkNotesWindow) dragElement(hawkNotesWindow);
 if (AdlerTimerWindow) dragElement(AdlerTimerWindow);
+
+// --- 5. Timer Logic ---
+let timer;
+let minutes = 15;
+let seconds = 0;
+let isPaused = false;
+let enteredTime = null;
+
+function startTimer() {
+    // Clear any existing intervals to prevent multiple timers running at once
+    clearInterval(timer); 
+    timer = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    if (!isPaused) {
+        if (seconds > 0) {
+            seconds--;
+        } else if (minutes > 0) {
+            seconds = 59;
+            minutes--;
+        }
+    }
+
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = formatTime(minutes, seconds);
+    }
+
+    if (minutes === 0 && seconds === 0) {
+        clearInterval(timer);
+        alert('Time is up! Take a break.');
+    }
+}
+
+function formatTime(minutes, seconds) {
+    // Fixed: Template literal must remain on the exact same line as the return statement
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+// Fixed: Renamed to match the capitalized onclick attributes in your HTML file
+function TogglePauseResume() {
+    const pauseResumeButton = document.querySelector('.control-buttons button');
+    isPaused = !isPaused;
+
+    if (isPaused) {
+        pauseResumeButton.textContent = 'Resume';
+    } else {
+        pauseResumeButton.textContent = 'Pause';
+    }
+}
+
+function restartTimer() {
+    minutes = enteredTime || 15;
+    seconds = 0;
+    isPaused = false;
+    
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = formatTime(minutes, seconds);
+    }
+    
+    const pauseResumeButton = document.querySelector('.control-buttons button');
+    if (pauseResumeButton) {
+        pauseResumeButton.textContent = 'Pause';
+    }
+    startTimer();
+}
+
+function chooseTime() {
+    const newTime = prompt('Enter new time in minutes:');
+    if (newTime !== null && !isNaN(newTime) && parseInt(newTime) > 0) {
+        enteredTime = parseInt(newTime);
+        minutes = enteredTime;
+        seconds = 0;
+        isPaused = false;
+        
+        const timerElement = document.getElementById('timer');
+        if (timerElement) {
+            timerElement.textContent = formatTime(minutes, seconds);
+        }
+        
+        const pauseResumeButton = document.querySelector('.control-buttons button');
+        if (pauseResumeButton) {
+            pauseResumeButton.textContent = 'Pause';
+        }
+        startTimer();
+    } else if (newTime !== null) {
+        alert('Invalid input. Please enter a valid number greater than 0.');
+    }
+}
+
+// Start tracking right away when the app is running
+startTimer();
