@@ -11,6 +11,8 @@ var hawkNotesWindow = document.querySelector("#hawkNotesWindow");
 var hawkNotesClose = document.querySelector("#hawkNotesClose");
 var AdlerTimerWindow = document.querySelector("#AdlerTimerWindow");
 var AdlerTimerClose = document.querySelector("#AdlerTimerClose");
+var EagleMusicWindow = document.querySelector("#EagleMusicWindow");
+var EagleMusicClose = document.querySelector("#EagleMusicClose");
 
 // --- 3. Core Window Logic ---
 function closeWindow(windowElement) {
@@ -65,6 +67,13 @@ if (AdlerTimerClose) {
   });
 }
 
+if (EagleMusicClose) {
+  EagleMusicClose.addEventListener("click", function(e) {
+    e.stopPropagation(); // Stops the drag engine from overriding the click
+    closeWindow(EagleMusicWindow);
+  });
+}
+
 
 window.handleIconTap = function(element) {
     if (element.classList.contains("selected")) {
@@ -88,6 +97,18 @@ window.handleAdlerIconTap = function(element) {
         selectIcon(element);
 
         openWindow(AdlerTimerWindow); 
+    }
+}
+window.handleEagleMusicIconTap = function(element) {
+    if (element.classList.contains("selected")) {
+        deselectIcon(element);
+        selectedIcon = undefined;
+    } else {
+        deselectIcon(selectedIcon);
+
+        selectIcon(element);
+
+        openWindow(EagleMusicWindow);
     }
 }
 
@@ -165,6 +186,7 @@ function dragElement(elmnt) {
 if (welcomeScreen) dragElement(welcomeScreen);
 if (hawkNotesWindow) dragElement(hawkNotesWindow);
 if (AdlerTimerWindow) dragElement(AdlerTimerWindow);
+if (EagleMusicWindow) dragElement(EagleMusicWindow);
 
 // --- 5. Timer Logic ---
 let timer;
