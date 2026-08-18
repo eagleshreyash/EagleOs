@@ -66,10 +66,49 @@
     <div id="EagleMusicWindow" class="window" style="display: none;">
         <div id="EagleMusicWindowheader" class="window-header">
             <img src="moveicon1.png" class="move-icon">
-            <img src="Eagle Music.jpg" style="width: 60px; height: 60px; margin-right: 8px;">
+            <img src="Eagle Music.png" style="width: 60px; height: 60px; margin-right: 8px;">
             <img src="Close icon.png" id="EagleMusicClose" class="close-button">
         </div>
         <h1 style="color: red; margin-top: 16px;">Eagle Music</h1> 
+        <div class="player">
+
+    <!-- Define the section for displaying details -->
+    <div class="details">
+      <div class="now-playing">PLAYING x OF y</div>
+      <div class="track-art"></div>
+      <div class="track-name">Track Name</div>
+      <div class="track-artist">Track Artist</div>
+    </div>
+
+    <!-- Define the section for displaying track buttons -->
+    <div class="buttons">
+      <div class="prev-track" onclick="prevTrack()">
+        <i class="fa fa-step-backward fa-2x"></i>
+      </div>
+      <div class="playpause-track" onclick="playpauseTrack()">
+        <i class="fa fa-play-circle fa-5x"></i>
+      </div>
+      <div class="next-track" onclick="nextTrack()">
+        <i class="fa fa-step-forward fa-2x"></i>
+      </div>
+    </div>
+
+    <!-- Define the section for displaying the seek slider-->
+    <div class="slider_container">
+      <div class="current-time">00:00</div>
+      <input type="range" min="1" max="100"
+        value="0" class="seek_slider" onchange="seekTo()">
+      <div class="total-duration">00:00</div>
+    </div>
+
+    <!-- Define the section for displaying the volume slider-->
+    <div class="slider_container">
+      <i class="fa fa-volume-down"></i>
+      <input type="range" min="1" max="100"
+        value="99" class="volume_slider" onchange="setVolume()">
+      <i class="fa fa-volume-up"></i>
+    </div>
+  </div>
         </div>
 
 
@@ -108,7 +147,7 @@
       
         <div onclick="handleEagleMusicIconTap(this)" style="text-align: center; padding: 12px; width: fit-content; cursor: pointer; filter: drop-shadow(0 0 8px black); display: inline-block;">
 
-            <img src="Eagle Music.jpg" style="width: 150px; height: 150px; display: block; margin: 0 auto 8px auto;">
+            <img src="Eagle Music.png" style="width: 150px; height: 150px; display: block; margin: 0 auto 8px auto;">
             <p style="margin: 0px; color: red;">Eagle Music</p>
         </div>
 </body>
